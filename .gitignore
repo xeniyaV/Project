@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.terraform
+terraform.tfstate
+
+**.terraform.**
 # C extensions
 *.so
 
@@ -127,3 +131,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+../.gitignore
+terraform.tfstate.backup
