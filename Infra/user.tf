@@ -16,20 +16,14 @@ resource "aws_iam_policy" "user_s3policy" {
         Action = [
           "s3:GetObject",
           "s3:PutObject",
-          "s3:PutObjectAcl"
-        ],
-        Effect = "Allow",
-        Resource = [
-          "${aws_s3_bucket.bucket.arn}/*"
-        ]
-      },
-      {
-        Action = [
+          "s3:PutObjectAcl",
           "s3:ListBucket"
         ],
         Effect = "Allow",
         Resource = [
-          "*"
+          "${aws_s3_bucket.bucket.arn}/*",
+           "${aws_s3_bucket.bucket.arn}"
+
         ]
       }
     ]
