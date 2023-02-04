@@ -22,7 +22,7 @@ resource "aws_iam_policy" "user_s3policy" {
         Effect = "Allow",
         Resource = [
           "${aws_s3_bucket.bucket.arn}/*",
-           "${aws_s3_bucket.bucket.arn}"
+          "${aws_s3_bucket.bucket.arn}"
 
         ]
       }
