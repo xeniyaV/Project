@@ -17,6 +17,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
         Principal = "*",
         Action = [
           "s3:GetObject",
+          "s3:GetObjectVersion"
+
         ],
         Resource = [
           "${aws_s3_bucket.bucket.arn}/*",
