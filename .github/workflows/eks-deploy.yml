@@ -35,10 +35,13 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}  
 
-    - name: Create kubeconfig
-      run: |
-        mkdir ${HOME}/.kube
-        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}    
+
+    # - name: Create kubeconfig
+    #   run: |
+    #     mkdir ${HOME}/.kube
+    #     echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
       #  cat ${HOME}/.kube/config   
   
     # - name: Configure AWS credentials from AWS account
