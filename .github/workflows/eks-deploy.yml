@@ -29,12 +29,12 @@ jobs:
       id: install  
   
     - name: Configure AWS credentials from AWS account
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: GitHub-OIDC-EKS 
-          cluster-name: ${{ env.CLUSTER_NAME }}  
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE }}
+        aws-region: ${{ secrets.AWS_REGION }}
+        role-session-name: GitHub-OIDC-EKS 
+        cluster-name: ${{ env.CLUSTER_NAME }}  
 
     - name: Deploy  to Amazon EKS
       run: |
