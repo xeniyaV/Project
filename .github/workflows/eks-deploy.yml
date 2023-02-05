@@ -26,15 +26,21 @@ jobs:
       uses: azure/setup-kubectl@v1
       with:
         version: 'v1.26.1'
-      id: install  
+      id: install 
+
+    - name: Create kubeconfig
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+        cat ${HOME}/.kube/config   
   
-    - name: Configure AWS credentials from AWS account
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: ${{ secrets.AWS_ROLE }}
-        aws-region: ${{ secrets.AWS_REGION }}
-        role-session-name: GitHub-OIDC-EKS 
-        cluster-name: ${{ env.CLUSTER_NAME }}  
+    # - name: Configure AWS credentials from AWS account
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     role-to-assume: ${{ secrets.AWS_ROLE }}
+    #     aws-region: ${{ secrets.AWS_REGION }}
+    #     role-session-name: GitHub-OIDC-EKS 
+    #     cluster-name: ${{ env.CLUSTER_NAME }}  
 
     - name: Deploy  to Amazon EKS
       run: |
