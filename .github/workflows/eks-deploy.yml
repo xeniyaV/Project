@@ -56,8 +56,8 @@ jobs:
     #     role-session-name: GitHub-OIDC-EKS 
     #     cluster-name: ${{ env.CLUSTER_NAME }}  
 
-    - name: Use context
-      run: kubectl config use-context
+    # - name: Use context
+    #   run: kubectl config use-context
 
     - name: Deploy  to Amazon EKS
       run: kubectl apply -f k8s/   
