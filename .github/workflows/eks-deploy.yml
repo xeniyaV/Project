@@ -2,6 +2,9 @@ name: eks-deploy
 
 on:
   push:
+    paths:
+      - 'k8s/*'
+
     branches: [ main ]
     paths: .github/workflows/eks-deploy.yml
   pull_request:
@@ -36,7 +39,7 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}  
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}    
+      run: aws eks update-kubeconfig --name efuse-eks-cluster --region us-east-2   
 
     # - name: Create kubeconfig
     #   run: |
