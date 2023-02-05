@@ -36,28 +36,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}  
 
-    # - name: Update kube config
-    #   run: aws eks update-kubeconfig --name efuse-eks-cluster --region us-east-2   
-
-    # - name: deploy to cluster
-    #   uses: kodermax/kubectl-aws-eks@master
-    #   env:
-    #     KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
     - name: Create kubeconfig
       run: |
         mkdir ${HOME}/.kube
         echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config   
   
-    # - name: Configure AWS credentials from AWS account
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     role-to-assume: ${{ secrets.AWS_ROLE }}
-    #     aws-region: ${{ secrets.AWS_REGION }}
-    #     role-session-name: GitHub-OIDC-EKS 
-    #     cluster-name: ${{ env.CLUSTER_NAME }}  
-
-    # - name: Use context
-    #   run: kubectl config use-context
-
     - name: Deploy  to Amazon EKS
       run: kubectl apply -f k8s/   
