@@ -1,11 +1,9 @@
 name: "Terraform action"
 on:
   push:
-    paths:
-      - 'Infra/*'
-
     branches:
       - main
+      paths: 'k8s/*'
   pull_request:
 permissions:
       id-token: write # This is required for aws oidc connection
