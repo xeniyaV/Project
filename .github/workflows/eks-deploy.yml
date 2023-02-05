@@ -3,9 +3,10 @@ name: eks-deploy
 on:
   push:
     branches: [ main ]
-    paths: 'k8s/*'
+    paths: .github/workflows/eks-deploy.yml
   pull_request:
     branches:  none # [ main ]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -15,7 +16,7 @@ env:
   
 jobs:
 
-  deploy-eks:
+  deploy:
     runs-on: ubuntu-latest
     steps:
 
@@ -35,14 +36,17 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}  
 
-    - name: Update kube config
-      run: aws eks update-kubeconfig --name efuse-eks-cluster --region us-east-2   
+    # - name: Update kube config
+    #   run: aws eks update-kubeconfig --name efuse-eks-cluster --region us-east-2   
 
-    # - name: Create kubeconfig
-    #   run: |
-    #     mkdir ${HOME}/.kube
-    #     echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
-      #  cat ${HOME}/.kube/config   
+    # - name: deploy to cluster
+    #   uses: kodermax/kubectl-aws-eks@master
+    #   env:
+    #     KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
+    - name: Create kubeconfig
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config   
   
     # - name: Configure AWS credentials from AWS account
     #   uses: aws-actions/configure-aws-credentials@v1
@@ -52,7 +56,8 @@ jobs:
     #     role-session-name: GitHub-OIDC-EKS 
     #     cluster-name: ${{ env.CLUSTER_NAME }}  
 
+    - name: Use context
+      run: kubectl config use-context octobay-api
+
     - name: Deploy  to Amazon EKS
-      run: |
-        kubectl apply -f k8s/nginx.yaml
-        kubectl apply -f k8s/whoami.yaml
+      run: kubectl apply -f k8s/   

@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      paths: 'k8s/*'
+    paths: .github/workflows/terraform-deploy.yml
   pull_request:
 permissions:
       id-token: write # This is required for aws oidc connection
