@@ -1,6 +1,6 @@
 
 # Creating  IAM user
-resource "aws_iam_user" "iam_user" {
+resource "aws_iam_user" "s3_user" {
   name = "efuse-s3-user"
 }
 
@@ -32,6 +32,6 @@ resource "aws_iam_policy" "user_s3policy" {
 
 # Attaching above policy to the IAM user
 resource "aws_iam_user_policy_attachment" "user_s3policy_attachment" {
-  user       = aws_iam_user.iam_user.name
+  user       = aws_iam_user.s3_user.name
   policy_arn = aws_iam_policy.user_s3policy.arn
 }
