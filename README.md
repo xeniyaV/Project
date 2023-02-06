@@ -15,12 +15,14 @@ You can test HEAD and GET requests by using the `curl` command :
 
 ## Objective 3: Implement an infrastructure-as-code solution to create an Amazon S3 bucket.
 
-Created s3 bucket and IAM user using Terraform [eFuse-Project/Infra/](eFuse-Project/Infra/) with all necessary permission for bucket and user. I shared user creds via email so you can test permissions.
+Created s3 bucket and IAM user using Terraform [eFuse-Project/Infra/](eFuse-Project/Infra/) with all necessary permission for bucket and user. 
 Also, uploaded 3 files to s3 bucket with command:
 
    ```
    aws s3 cp <path-folder> s3://<bucket-name>/<prefix-key>
    ```
+   
+   [Here is one of the objects](https://efuse-s3bucket-work-sample.s3.us-east-2.amazonaws.com/files/pic2.jpeg)
 
 ## Bonus Objective: Implement a deployment process
    
