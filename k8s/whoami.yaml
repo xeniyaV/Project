@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami-ingress
+spec:
+  defaultBackend:  # default backend service for incoming requests.
+    service:
+      name: whoami-service
+      port:
+        number: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami-service
+spec:
+  selector:
+    app: whoami 
+  ports:
+  - targetPort: 80
+    port: 80
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: whoami-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whoami
+  template:
+    metadata:
+      labels:
+        app: whoami
+    spec:
+      containers:
+      - image: containous/whoami
+        name: whoami-container
+        ports:
+        - containerPort: 80
+  
