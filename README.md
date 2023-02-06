@@ -21,8 +21,8 @@ Also, uploaded 3 files to s3 bucket with command:
    ```
    aws s3 cp <path-folder> s3://<bucket-name>/<prefix-key>
    ```
-   
-   [Here is one of the objects](https://efuse-s3bucket-work-sample.s3.us-east-2.amazonaws.com/files/pic2.jpeg)
+
+  One of the object [Here](https://efuse-s3bucket-work-sample.s3.us-east-2.amazonaws.com/files/pic2.jpeg)
 
 ## Bonus Objective: Implement a deployment process
    
