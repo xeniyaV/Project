@@ -20,7 +20,7 @@ which include `Deployment` that contains  containous/whoami image in it that wil
 
 `Ingress` Now the main part of this assignment is ingress where I have routed external traffic to services(Service is  accessible from outside).
 
-For testing that Kubernetes ingress controller is sending only requests for `/whoami` to the container use `curl` command with Ingress `EXTERNAL_IP` address
+To test that Kubernetes ingress controller is sending only requests for `/whoami` to the container use `curl` command with Ingress `EXTERNAL_IP` address
 
 ```
 curl http://<EXTERNAL_IP>/whoami
